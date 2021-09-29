@@ -25,7 +25,7 @@ class Die {
   
   void two() {
     pushMatrix();
-    rotateY(0.5);
+    rotateZ(0.5);
     translate(51, 0, 0);
     fill(255, 0, 0);
     circle(0, 0, 20);
@@ -36,8 +36,8 @@ class Die {
     fill(255);
     box(this.x, this.y, this.z);
     fill(0);
-    one();
-    two();
+    //one();
+    //two();
 }
 
   void rotate() {
