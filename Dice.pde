@@ -36,7 +36,7 @@ class Die {
     fill(255);
     box(this.x, this.y, this.z);
     fill(0);
-    //one();
+    one();
     //two();
 }
 
