@@ -15,16 +15,36 @@ class Die {
     this.y = y;
     this.z = z;
   }
+ 
+  void one() {
+    pushMatrix();
+    translate(0, 0, 51);
+    circle(0, 0, 20);
+    popMatrix();
+  }
+  
+  void two() {
+    pushMatrix();
+    rotateY(0.5);
+    translate(51, 0, 0);
+    fill(255, 0, 0);
+    circle(0, 0, 20);
+    popMatrix();
+  }
 
   void render() {
-    noStroke();
+    fill(255);
     box(this.x, this.y, this.z);
-    stroke(255, 0, 100); 
-    point(0, 0, 100);
-  }
+    fill(0);
+    one();
+    two();
+}
 
   void rotate() {
     rotation += 0.05f;
+    rotateY(this.rotation);
+    rotateX(this.rotation);
+    rotateZ(this.rotation);
   }
 }
 
@@ -33,12 +53,8 @@ Die die = new Die(100, 100, 100);
 void draw() {
   lights();
   background(0);
-  stroke(255, 0, 0);
   translate(400, 400, 0);
   die.rotate();
-  rotateY(0.5);
-  rotateY(die.rotation);
-  rotateX(die.rotation);
-  rotateZ(die.rotation);
+  //rotateY(-1.25);
   die.render();
 }
