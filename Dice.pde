@@ -1,10 +1,35 @@
 void setup() {
   size(800, 800, P3D);
-  background(0);
+  background(255, 0, 0);
   noStroke();
   frameRate(20);
   strokeWeight(20);
 }
+
+class Value {
+  void one() {
+    ellipse(0, 0, 15, 15);
+  }
+  void two() {
+    ellipse(25, 25, 15, 15);
+    ellipse(-25, -25, 15, 15);
+  }
+  void three() {
+    this.one();
+    this.two();
+  }
+
+  void four() {
+  }
+
+  void five() {
+  }
+
+  void six() {
+  }
+}
+
+Value value = new Value();
 
 class Die {
   int x, y, z;
@@ -15,30 +40,52 @@ class Die {
     this.y = y;
     this.z = z;
   }
- 
-  void one() {
+
+  void front() {
     pushMatrix();
     translate(0, 0, 51);
-    ellipse(0, 0, 20, 20);
+    value.one();
     popMatrix();
   }
-  
-  void two() {
+
+  void back() {
     pushMatrix();
-    rotateZ(0.5);
-    translate(51, 0, 0);
-    fill(255, 0, 0);
-    circle(0, 0, 20);
+    translate(0, 0, -51);
+    value.three();
     popMatrix();
+  }
+
+  void left() {
+    pushMatrix();
+    translate(-51, 0, 0);
+    rotateY(-PI/2);
+    value.two();
+    popMatrix();
+  }
+
+  void right() {
+    pushMatrix();
+    translate(51, 0, 0);
+    rotateY(PI/2);
+    value.two();
+    popMatrix();
+  }
+
+  void top() {
+  }
+
+  void bottom() {
   }
 
   void render() {
     fill(255);
     box(this.x, this.y, this.z);
     fill(0);
-    one();
-    //two();
-}
+    front();
+    right();
+    left();
+    back();
+  }
 
   void rotate() {
     rotation += 0.05f;
@@ -52,9 +99,8 @@ Die die = new Die(100, 100, 100);
 
 void draw() {
   lights();
-  background(0);
+  background(255, 0, 0);
   translate(400, 400, 0);
   die.rotate();
-  //rotateY(-1.25);
   die.render();
 }
