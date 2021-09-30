@@ -19,7 +19,7 @@ class Die {
   void one() {
     pushMatrix();
     translate(0, 0, 51);
-    circle(0, 0, 20);
+    ellipse(0, 0, 20, 20);
     popMatrix();
   }
   
