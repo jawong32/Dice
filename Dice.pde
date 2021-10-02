@@ -119,24 +119,15 @@ void setup() {
   noStroke();
   frameRate(20);
   strokeWeight(20);
-  lights();
-}
-
-void populateArray() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       dice[i][j] = new Die(100, 100, 100);
     }
   }
-  first = false;
 }
 
-boolean first = true;
-
 void draw() {
-  if (first) {
-    populateArray();
-  }
+  lights();
   background(50);
   for (int i = 0; i < 3; i++) {
     translate(0, 100, 0);
