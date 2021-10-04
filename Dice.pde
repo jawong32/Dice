@@ -151,7 +151,6 @@ void setup() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       dice[i][j] = new Die(100, 100, 100);
-      System.out.println(dice[i][j].value.sides[0]);
     }
   }
 }
