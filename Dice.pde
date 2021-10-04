@@ -126,18 +126,21 @@ void setup() {
   }
 }
 
-void draw() {
-  lights();
-  background(50);
+void render() {
   for (int i = 0; i < 3; i++) {
-    translate(0, 100, 0);
+    translate(0, 200, 0);
     for (int j = 0; j < 3; j++) {
       pushMatrix();
-      translate(200 + i * 200, 0, 0);
+      translate(200 + j * 200, 0, 0);
       dice[i][j].rotate();
       dice[i][j].render();
       popMatrix();
     }
   }
-  translate(-300, 0, 0);
+}
+
+void draw() {
+  lights();
+  background(50);
+  render();
 }
