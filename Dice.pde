@@ -1,4 +1,33 @@
+import java.util.*;
+
 class Value {
+  Integer[] sides = new Integer[] {1, 2, 3, 4, 5, 6};
+
+  Value() {
+    Collections.shuffle(Arrays.asList(this.sides));
+  }
+
+  void random(int index) {
+    switch (this.sides[index]) {
+    case 1:  
+      this.one(); 
+      break;
+    case 2: 
+      this.two();
+      break;
+    case 3:
+      this.three();
+      break;
+    case 4:
+      this.four();
+      break;
+    case 5:
+      this.five();
+      break;
+    default:
+      this.six();
+    }
+  }
 
   void one() {
     ellipse(0, 0, 15, 15);
@@ -35,6 +64,7 @@ class Value {
 class Die {
   int x, y, z;
   float rotX = 0, rotY = 0, rotZ = 0;
+  Value value = new Value();
 
   Die(int x, int y, int z) {
     this.x = x;
@@ -45,14 +75,14 @@ class Die {
   void front() {
     pushMatrix();
     translate(0, 0, 51);
-    value.one();
+    value.random(0);
     popMatrix();
   }
 
   void back() {
     pushMatrix();
     translate(0, 0, -51);
-    value.three();
+    value.random(1);
     popMatrix();
   }
 
@@ -60,7 +90,7 @@ class Die {
     pushMatrix();
     translate(-51, 0, 0);
     rotateY(-PI/2);
-    value.two();
+    value.random(2);
     popMatrix();
   }
 
@@ -68,7 +98,7 @@ class Die {
     pushMatrix();
     translate(51, 0, 0);
     rotateY(PI/2);
-    value.four();
+    value.random(3);
     popMatrix();
   }
 
@@ -76,7 +106,7 @@ class Die {
     pushMatrix();
     translate(0, -51, 0);
     rotateX(PI/2);
-    value.six();
+    value.random(4);
     popMatrix();
   }
 
@@ -84,7 +114,7 @@ class Die {
     pushMatrix();
     translate(0, 51, 0);
     rotateX(PI/2);
-    value.five();
+    value.random(5);
     popMatrix();
   }
 
@@ -110,7 +140,6 @@ class Die {
   }
 }
 
-Value value = new Value();
 Die[][] dice = new Die[3][3];
 
 void setup() {
@@ -122,6 +151,7 @@ void setup() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       dice[i][j] = new Die(100, 100, 100);
+      System.out.println(dice[i][j].value.sides[0]);
     }
   }
 }
