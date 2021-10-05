@@ -1,10 +1,18 @@
 import java.util.*;
 
 class Value {
-  Integer[] sides = new Integer[] {1, 2, 3, 4, 5, 6};
+  int[] sides = new int[6];
 
   Value() {
-    Collections.shuffle(Arrays.asList(this.sides));
+    for (int i = 0; i < 6; i++) {
+      int[] sortedSides = sort(sides.clone());
+      int num = (int) (Math.random() * 6) + 1;
+      while (Arrays.binarySearch(sortedSides, num) > 0) {
+         num = (int) (Math.random() * 6) + 1;
+      }
+      this.sides[i] = num;
+      System.out.println("here");
+    }
   }
 
   void random(int index) {
