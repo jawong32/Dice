@@ -4,7 +4,7 @@ class Value {
   Integer[] sides = new Integer[] {1, 2, 3, 4, 5, 6};
 
   Value() {
-    //Collections.shuffle(Arrays.asList(this.sides));
+    Collections.shuffle(Arrays.asList(this.sides));
   }
 
   void random(int index) {
