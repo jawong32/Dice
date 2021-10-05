@@ -11,7 +11,6 @@ class Value {
          num = (int) (Math.random() * 6) + 1;
       }
       this.sides[i] = num;
-      System.out.println("here");
     }
   }
 
