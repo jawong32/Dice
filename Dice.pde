@@ -1,16 +1,14 @@
 import java.util.*;
 
 class Value {
-  int[] sides = new int[6];
+  int[] sides = new int[] {1, 2, 3, 4, 5, 6};
 
   Value() {
     for (int i = 0; i < 6; i++) {
-      int[] sortedSides = sort(sides.clone());
-      int num = (int) (Math.random() * 6) + 1;
-      while (Arrays.binarySearch(sortedSides, num) > 0) {
-         num = (int) (Math.random() * 6) + 1;
-      }
-      this.sides[i] = num;
+      int temp = this.sides[i];
+      int index = (int) (Math.random() * 6);
+      this.sides[i] = this.sides[index];
+      this.sides[index] = temp;
     }
   }
 
