@@ -69,12 +69,16 @@ class Value {
 class Die {
   int x, y, z;
   float rotX = 0, rotY = 0, rotZ = 0;
+  double incX, incY, incZ;
   Value value = new Value();
 
   Die(int x, int y, int z) {
     this.x = x;
     this.y = y;
     this.z = z;
+    this.incX = Math.random() * 0.075;
+    this.incY = Math.random() * 0.075;
+    this.incZ = Math.random() * 0.05;
   }
 
   void front() {
@@ -136,9 +140,12 @@ class Die {
   }
 
   void rotate() {
-    rotX += 0.05f * PI;
-    rotY += 0.012 * PI;
-    rotZ += 0.05f * PI;
+    /*rotX += 0.05f * PI;
+     rotY += 0.012 * PI;
+     rotZ += 0.05f * PI;*/
+    rotX += this.incX * PI;
+    rotY += this.incY * PI;
+    rotZ += this.incZ * PI;
     rotateY(this.rotY);
     rotateX(this.rotX);
     rotateZ(this.rotZ);
@@ -175,6 +182,6 @@ void render() {
 
 void draw() {
   lights();
-  background(50);
+  background(0);
   render();
 }
