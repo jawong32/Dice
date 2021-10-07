@@ -1,7 +1,11 @@
 import java.util.*;
 
+static class Counter {
+  static int count = 0;
+}
+
 class Value {
-  int[] sides = new int[] {1, 2, 3, 4, 5, 6};
+  int[] sides = {1, 2, 3, 4, 5, 6};
 
   Value() {
     for (int i = 0; i < 6; i++) {
@@ -68,17 +72,27 @@ class Value {
 
 class Die {
   int x, y, z;
+  int front, back, left, right, top, bottom;
   float rotX = 0, rotY = 0, rotZ = 0;
   double incX, incY, incZ;
   Value value = new Value();
 
   Die(int x, int y, int z) {
+    Counter.count += 1;
     this.x = x;
     this.y = y;
     this.z = z;
+
     this.incX = Math.random() * 0.075;
     this.incY = Math.random() * 0.075;
     this.incZ = Math.random() * 0.05;
+
+    this.front = this.value.sides[0];
+    this.back = this.value.sides[1];
+    this.left = this.value.sides[2];
+    this.right = this.value.sides[3];
+    this.top = this.value.sides[4];
+    this.bottom = this.value.sides[5];
   }
 
   void front() {
@@ -140,9 +154,6 @@ class Die {
   }
 
   void rotate() {
-    /*rotX += 0.05f * PI;
-     rotY += 0.012 * PI;
-     rotZ += 0.05f * PI;*/
     rotX += this.incX * PI;
     rotY += this.incY * PI;
     rotZ += this.incZ * PI;
@@ -158,6 +169,8 @@ void setup() {
   size(800, 800, P3D);
   background(50);
   noStroke();
+  textAlign(CENTER);
+  textSize(30);
   frameRate(20);
   strokeWeight(20);
   for (int i = 0; i < 3; i++) {
@@ -184,4 +197,7 @@ void draw() {
   lights();
   background(0);
   render();
+  fill(255);
+  text(String.format("Current Value: %d", Counter.count), 400, 150);
+  Counter.count = 0;
 }
