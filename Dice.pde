@@ -1,8 +1,8 @@
 import java.util.*;
 
-static class Counter {
+/*static class Counter {
   static int count = 0;
-}
+}*/
 
 class Value {
   int[] sides = {1, 2, 3, 4, 5, 6};
@@ -78,7 +78,7 @@ class Die {
   Value value = new Value();
 
   Die(int x, int y, int z) {
-    Counter.count += 1;
+    //Counter.count += 1;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -198,6 +198,6 @@ void draw() {
   background(0);
   render();
   fill(255);
-  text(String.format("Current Value: %d", Counter.count), 400, 150);
-  Counter.count = 0;
+  //text(String.format("Current Value: %d", Counter.count), 400, 150);
+  //Counter.count = 0;
 }
