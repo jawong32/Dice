@@ -67,8 +67,7 @@ class Value {
 }
 
 class Die {
-  int x, y, z;
-  int front, back, left, right, top, bottom;
+  int x, y, z, fr, ba, le, ri, to, bo;
   float rotX = 0, rotY = 0, rotZ = 0;
   double incX, incY, incZ;
   Value value = new Value();
@@ -82,12 +81,12 @@ class Die {
     this.incY = Math.random() * 0.075;
     this.incZ = Math.random() * 0.05;
 
-    this.front = this.value.sides[0];
-    this.back = this.value.sides[1];
-    this.left = this.value.sides[2];
-    this.right = this.value.sides[3];
-    this.top = this.value.sides[4];
-    this.bottom = this.value.sides[5];
+    this.fr = this.value.sides[0];
+    this.ba = this.value.sides[1];
+    this.le = this.value.sides[2];
+    this.ri = this.value.sides[3];
+    this.to = this.value.sides[4];
+    this.bo = this.value.sides[5];
   }
 
   void front() {
