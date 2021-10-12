@@ -1,9 +1,5 @@
 import java.util.*;
 
-static class Counter {
-  static int count = 0;
-}
-
 class Value {
   int[] sides = {1, 2, 3, 4, 5, 6};
 
@@ -161,7 +157,7 @@ class Die {
     else if (totalRotY < 1.25 * PI) j = 2;
     else if (totalRotY < 1.75 * PI) j = 3;
     
-    Counter.count += sides[i][j];
+    counter += sides[i][j];
   }
 
   void render() {
@@ -187,6 +183,7 @@ class Die {
 }
 
 Die[][] dice = new Die[3][3];
+int counter = 0;
 
 void setup() {
   size(800, 800, P3D);
@@ -221,6 +218,6 @@ void draw() {
   background(0);
   render();
   fill(255);
-  text(String.format("Current Value: %d", Counter.count), 400, 150);
-  Counter.count = 0;
+  text(String.format("Current Value: %d", counter), 400, 150);
+  counter = 0;
 }
