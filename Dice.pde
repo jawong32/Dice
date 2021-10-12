@@ -1,8 +1,8 @@
 import java.util.*;
 
 static class Counter {
- static int count = 0;
- }
+  static int count = 0;
+}
 
 class Value {
   int[] sides = {1, 2, 3, 4, 5, 6};
@@ -18,10 +18,10 @@ class Value {
 
   void random(int index) {
     switch (this.sides[index]) {
-    case 1:  
-      this.one(); 
+    case 1:
+      this.one();
       break;
-    case 2: 
+    case 2:
       this.two();
       break;
     case 3:
@@ -73,19 +73,17 @@ class Value {
 class Die {
   int x, y, z;
   int fr, ba, le, ri, to, bo;
-  float rotX = 0, rotY = 0, rotZ = 0;
-  double incX, incY, incZ;
+  float rotX = 0, rotY = 0;
+  double incX, incY;
   Value value = new Value();
 
   Die(int x, int y, int z) {
-    Counter.count += 1;
     this.x = x;
     this.y = y;
     this.z = z;
 
     this.incX = Math.random() * 0.075;
-     this.incY = Math.random() * 0.075;
-     this.incZ = Math.random() * 0.05;
+    this.incY = Math.random() * 0.075;
 
     this.fr = this.value.sides[0];
     this.ba = this.value.sides[1];
@@ -141,26 +139,50 @@ class Die {
     popMatrix();
   }
 
+  void calculateSide() {
+    int[][] sides = {
+      {this.fr, this.le, this.ba, this.ri},
+      {this.bo, this.bo, this.bo, this.bo},
+      {this.ba, this.ri, this.fr, this.le},
+      {this.to, this.to, this.to, this.to}
+
+    };
+    int i = 0, j = 0;
+    double totalRotX = this.rotX % (2 * PI);
+    double totalRotY = this.rotY % (2 * PI);
+    
+    if (totalRotX < 0.25 * PI || totalRotX > 1.75 * PI) i = 0;
+    else if (totalRotX < 0.75 * PI) i = 1;
+    else if (totalRotX < 1.25 * PI) i = 2;
+    else if (totalRotX < 1.75 * PI) i = 3;
+    
+    if (totalRotY < 0.25 * PI || totalRotY > 1.75 * PI) j = 0;
+    else if (totalRotY < 0.75 * PI) j = 1;
+    else if (totalRotY < 1.25 * PI) j = 2;
+    else if (totalRotY < 1.75 * PI) j = 3;
+    
+    Counter.count += sides[i][j];
+  }
+
   void render() {
     fill(255);
     box(this.x, this.y, this.z);
     fill(0);
-    front();
-    back();
-    left();
-    right();
-    top();
-    bottom();
+    this.front();
+    this.back();
+    this.left();
+    this.right();
+    this.top();
+    this.bottom();
+    this.calculateSide();
   }
 
   void rotate() {
     this.rotX += this.incX * PI;
-     this.rotY += this.incY * PI;
-     this.rotZ += this.incZ * PI;
+    this.rotY += this.incY * PI;
 
-    rotateY(this.rotY);
     rotateX(this.rotX);
-    rotateZ(this.rotZ);
+    rotateY(this.rotY);
   }
 }
 
@@ -171,7 +193,7 @@ void setup() {
   background(50);
   noStroke();
   textAlign(CENTER);
-   textSize(30);
+  textSize(30);
   frameRate(20);
   strokeWeight(20);
   for (int i = 0; i < 3; i++) {
