@@ -1,23 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap");
+
+.text {
+  font-family: "DM Mono", monospace;
+  color: white;
+}
 
 body {
-    background-color: rgb(200,200,200);
-    color: rgb(0,0,0);
-    font-family: "Open Sans", sans-serif;
-    text-align: center;
+  background-color: #000000;
+  text-align: center;
 }
 
-#content {
-    display: block;
-    margin-left: auto;
-    margin-right: auto
+div {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-header {
-	
+canvas {
+  outline: none;
+  box-shadow: 0px 0px 25px white;
 }
-
-footer {
-	font-style: italic;
-	font-size: 90%;
-}
-

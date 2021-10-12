@@ -218,6 +218,6 @@ void draw() {
   background(0);
   render();
   fill(255);
-  text(String.format("Current Value: %d", counter), 400, 150);
+  text("Current Value: ".concat((String) counter), 400, 150);
   counter = 0;
 }
